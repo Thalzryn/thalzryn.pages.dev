@@ -1,0 +1,148 @@
+/* ==========================================
+   1. 全局變量與 Reset
+   ========================================== */
+:root {
+  --bg: #1a1c1e;       /* 深灰底色，護眼且沉靜 */
+  --text: #cbd5e1;     /* 柔和灰白正文 */
+  --muted: #64748b;    /* 描述與時間 */
+  --accent: #93c5fd;   /* 冷藍標題與連結 */
+}
+
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  max-width: 580px;
+  margin: 80px auto;
+  padding: 0 24px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 全局連結 */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.6;
+}
+
+/* 頂部導航 */
+nav {
+  margin-bottom: 60px;
+  font-weight: 500;
+}
+
+/* 區塊獨立分隔（大留白自然分區） */
+.section-block {
+  margin-top: 64px;
+}
+
+.section-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+/* ==========================================
+   2. 個人簡介區塊 (Bio)
+   ========================================== */
+.bio h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.bio h1 a.avatar-title {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.bio h1 a.avatar-title:hover {
+  opacity: 0.8;
+}
+
+.bio p {
+  font-size: 0.98rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.social-links {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.social-links a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ==========================================
+   3. 友情鏈接 (Friends)
+   ========================================== */
+.friend-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+}
+
+.friend-links a {
+  font-size: 0.92rem;
+  color: var(--text);
+  border-bottom: 1px dashed var(--muted);
+  padding-bottom: 2px;
+}
+
+.friend-links a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ==========================================
+   4. 分類選單 (Categories)
+   ========================================== */
+.categories {
+  list-style: none;
+}
+
+.categories li {
+  margin-bottom: 36px;
+}
+
+.categories li:last-child {
+  margin-bottom: 0;
+}
+
+.categories a {
+  display: block;
+}
+
+.categories h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.categories p {
+  font-size: 0.9rem;
+  color: var(--muted);
+}

@@ -1,0 +1,51 @@
+/* ==========================================
+   獨立關於頁面專屬樣式 (about.css)
+   ========================================== */
+
+.about-header {
+  margin-bottom: 40px;
+}
+
+.about-header h1 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.about-header .subtitle {
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+.about-content h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 36px;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.about-content p {
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+/* 觀測點/卡片式強調框 */
+.about-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-left: 3px solid var(--accent);
+  padding: 20px;
+  border-radius: 0 6px 6px 0;
+  margin: 28px 0;
+}
+
+.about-box p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}

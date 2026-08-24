@@ -1,0 +1,122 @@
+/* ==========================================
+   星巡者 - 實驗頁面獨立 CSS (lab.css)
+   ========================================== */
+
+.tool {
+  margin-top: 10px;
+}
+
+.tool h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+/* 複選框區域排版與樣式 */
+.tool label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-right: 16px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.tool input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--muted);
+  border-radius: 3px;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.tool input[type="checkbox"]:checked {
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+
+.tool input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+  border: solid #1a1c1e; /* 對應深灰底色 */
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* 下拉選單 (select) 樣式 */
+.tool select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #24272a; /* 稍亮一點的深灰，增加層次感 */
+  color: var(--text);
+  border: 1px solid var(--muted);
+  padding: 8px 32px 8px 12px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  outline: none;
+  cursor: pointer;
+  margin-top: 8px;
+  margin-bottom: 20px;
+  /* 自定義 SVG 下拉箭頭 */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2393c5fd' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.tool select:focus {
+  border-color: var(--accent);
+}
+
+/* 生成按鈕 (.action-button) 樣式 */
+.action-button {
+  display: block;
+  background-color: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 8px 24px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 24px;
+}
+
+.action-button:hover {
+  background-color: var(--accent);
+  color: #1a1c1e; /* 懸停時背景變藍，文字變深灰 */
+  opacity: 1;
+}
+
+.action-button:active {
+  transform: scale(0.98);
+}
+
+/* 結果顯示區域 (#result) 樣式 */
+#result {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--accent);
+  min-height: 48px;
+  padding: 16px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 4px 4px 0;
+  line-height: 1.6;
+}
