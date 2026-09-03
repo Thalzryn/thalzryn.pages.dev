@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!listEl || !formEl || !submitBtn) return;
 
-    // XSS 安全字元轉義
     const escapeHtml = str => str.replace(/[&<>"']/g, m => ({
         '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
     }[m]));
@@ -44,8 +43,14 @@ document.addEventListener("DOMContentLoaded", () => {
         
         const nickname = document.getElementById("nickname").value.trim();
         const content = document.getElementById("content").value.trim();
+        const turnstileToken = formEl.querySelector('[name="cf-turnstile-response"]')?.value;
 
         if (!nickname || !content) return;
+        
+        if (!turnstileToken) {
+            alert("請先完成驗證");
+            return;
+        }
 
         submitBtn.disabled = true;
         submitBtn.innerText = "傳送中...";
@@ -54,19 +59,26 @@ document.addEventListener("DOMContentLoaded", () => {
             const res = await fetch(API_URL, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ nickname, content })
+                body: JSON.stringify({ 
+                    nickname, 
+                    content, 
+                    token: turnstileToken 
+                })
             });
 
             const data = await res.json();
 
             if (data.success) {
                 document.getElementById("content").value = "";
+                if (window.turnstile) window.turnstile.reset();
                 fetchComments();
             } else {
                 alert("傳送失敗：" + (data.error || "未知錯誤"));
+                if (window.turnstile) window.turnstile.reset();
             }
         } catch (e) {
             alert("網絡錯誤，傳送失敗");
+            if (window.turnstile) window.turnstile.reset();
         } finally {
             submitBtn.disabled = false;
             submitBtn.innerText = "傳送留言";

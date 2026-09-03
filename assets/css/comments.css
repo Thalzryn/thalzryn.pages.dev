@@ -14,7 +14,7 @@
   margin-top: 20px;
 }
 
-/* 表单组 */
+/* 表單輸入框 */
 .comment-form .form-group {
   margin-bottom: 16px;
 }
@@ -44,7 +44,7 @@
   min-height: 100px;
 }
 
-/* 提交按钮 */
+/* 按鈕 */
 .comment-submit-btn {
   background: transparent;
   color: var(--accent);
@@ -69,14 +69,13 @@
   color: var(--accent);
 }
 
-/* 分割线 */
+/* 分隔線與列表 */
 .comment-divider {
   border: none;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   margin: 36px 0;
 }
 
-/* 留言列表项 */
 .comment-item {
   padding: 16px 0;
   border-bottom: 1px dashed rgba(255, 255, 255, 0.08);

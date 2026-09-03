@@ -23,28 +23,35 @@
       <h1><a href="about.html" target="_blank" rel="noopener">留言板</a></h1>
       <p>這裡是留言板！</p>
 
-  <section class="comments-section">
-      <div class="comments-title">GUESTBOOK</div>
-      
-      <div class="comments-container">
-          <!-- 留言表單 -->
-          <form id="comment-form" class="comment-form">
-              <div class="form-group">
-                  <input type="text" id="nickname" placeholder="暱稱" required maxlength="20">
-              </div>
-              <div class="form-group">
-                  <textarea id="content" placeholder="撰寫你的留言..." required maxlength="500" rows="4"></textarea>
-              </div>
-              <button type="submit" id="submit-btn" class="comment-submit-btn">傳送留言</button>
-          </form>
+<section class="comments-section">
+    <div class="comments-title">留言板</div>
+    
+    <div class="comments-container">
+        <!-- 留言表單 -->
+        <form id="comment-form" class="comment-form">
+            <div class="form-group">
+                <input type="text" id="nickname" placeholder="暱稱" required maxlength="20">
+            </div>
+            <div class="form-group">
+                <textarea id="content" placeholder="撰寫你的留言..." required maxlength="500" rows="4"></textarea>
+            </div>
 
-          <hr class="comment-divider">
+            <!-- Turnstile 深色模式驗證框 -->
+            <div class="form-group">
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAAEl7dZEyK-3daL0o" data-theme="dark"></div>
+            </div>
 
-          <!-- 留言列表 -->
-          <div id="comments-list">
-              <p class="comment-state-text">載入留言中...</p>
-          </div>
-      </div>
-  </section>
+            <button type="submit" id="submit-btn" class="comment-submit-btn">傳送留言</button>
+        </form>
 
+        <hr class="comment-divider">
+
+        <!-- 留言列表 -->
+        <div id="comments-list">
+            <p class="comment-state-text">載入留言中...</p>
+        </div>
+    </div>
+</section>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script src="assets/js/comments.js"></script>
