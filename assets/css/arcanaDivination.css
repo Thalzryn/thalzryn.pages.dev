@@ -1,0 +1,87 @@
+#cardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  text-align: center; 
+  gap: 12px; 
+  margin-top: 24px;
+}
+
+#cardContainer img {
+  display: block;
+  margin: 12px auto; 
+  max-width: 180px; 
+  height: auto;
+  border-radius: 6px;
+}
+
+/* 单张卡牌容器卡片 */
+.card-item, .card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: border-color 0.2s ease;
+}
+
+.card-item:hover, .card:hover {
+  border-color: rgba(147, 197, 253, 0.3);
+}
+
+.card-item .card-position,
+#cardContainer > p:nth-child(4n+1) {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+/* 卡牌图片 */
+.card-item img,
+#cardContainer img {
+  width: 140px;
+  height: auto;
+  border-radius: 6px;
+  margin: 8px 0 16px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* 卡牌名称 */
+.card-item .card-name,
+#cardContainer > p:nth-child(4n+3) {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+/* 卡牌寓意释义 */
+.card-item .card-meaning,
+#cardContainer > p:nth-child(4n+4) {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 400px;
+}
+
+@media (min-width: 640px) {
+  #cardContainer.horizontal {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  #cardContainer.horizontal .card-item {
+    flex: 1;
+    padding: 16px 12px;
+  }
+
+  #cardContainer.horizontal .card-item img {
+    width: 110px;
+  }
+}

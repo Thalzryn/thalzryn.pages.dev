@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>隨機武器魔物 - 星巡者Thalzryn</title>
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../favicon-48x48.png" type="image/png" sizes="48x48">
+  <link rel="icon" href="../favicon-192x192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/lab.css">
+  <link rel="stylesheet" href="../assets/css/arcanaDivination.css">
+</head>
+<body>
+  <nav>
+    <a href="../category-lab.html">← 返回 實驗</a>
+  </nav>
+    <main>
+        <article>
+            <div class="tool">
+                <h1>奧秘卡占卜 三位一體</h1>
+                <p class="note-text">
+                    「三位一體」是使用3張大奧秘卡的簡易占卜法。
+                    <br>
+                    首先將6張大奧秘卡進行打亂，牌面朝下抽出1張放在自己面前。然後抽出第二張放在第一張的左側。再抽出第三張放在第一張的右側比其他兩張稍微高一點的位置。
+                    <br>
+                    這三張奧秘卡，左側象徵著過去，中間象徵著現在，右側象徵著未來。此時翻開牌面，正位（即圖案上下不顛倒）的牌面象徵著其所對應六屬性中擁有「星極」神力的十二神，而逆位（即圖案上下顛倒）的牌面則象徵著所對應六屬性中擁有「靈極」神力的十二神。
+                    <br>
+                    (但實際抽牌是豎著排的，因為放不下了，請假裝是橫排的)
+                    <br>
+                </p>
+                <p class="note-text">註：《艾歐澤亞百科全書》並沒有寫所有卡牌的意義，大部分都是我自己腦補的。<br></p>
+                <button onclick="drawCards()" class="action-button">開始奧秘卡占卜，點擊抽取三張卡牌</button>
+                <div id="cardContainer">
+                </div>
+            </div>
+            <script src="../assets/js/arcanaDivinationTrinity.js"></script>
+        </article>
+    </main>
+
+</body>
+</html>
+
