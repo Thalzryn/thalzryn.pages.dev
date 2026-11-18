@@ -36,31 +36,31 @@ function generateNumbers() {
   function getFirstGroupText(number) {
     switch (number) {
       case 1:
-        return '大劍';
+        return '大剑';
       case 2:
         return '太刀';
       case 3:
-        return '單手劍';
+        return '单手剑';
       case 4:
-        return '雙劍';
+        return '双剑';
       case 5:
-        return '大錘';
+        return '大锤';
       case 6:
-        return '狩獵笛';
+        return '狩猎笛';
       case 7:
-        return '長槍';
+        return '长枪';
       case 8:
-        return '銃槍';
+        return '铳枪';
       case 9:
-        return '斬擊斧';
+        return '斩击斧';
       case 10:
         return '充能斧';
       case 11:
-        return '操蟲棍';
+        return '操虫棍';
       case 12:
-        return '輕弩槍';
+        return '轻弩枪';
       case 13:
-        return '重弩槍';
+        return '重弩枪';
       case 14:
         return '弓箭';
       default:
@@ -71,149 +71,149 @@ function generateNumbers() {
   function getSecondGroupText(number) {
     switch (number) {
       case 1:
-        return '大兇豺龍';
+        return '大贼龙';
       case 2:
-        return '搔鳥';
+        return '搔鸟';
       case 3:
-        return '毒妖鳥';
+        return '毒妖鸟';
       case 4:
-        return '土砂龍';
+        return '土砂龙';
       case 5:
-        return '泥魚龍';
+        return '泥鱼龙';
       case 6:
-        return '飛雷龍';
+        return '飞雷龙';
       case 7:
-        return '蠻顎龍';
+        return '蛮颚龙';
       case 8:
-        return '雌火龍';
+        return '雌火龙';
       case 9:
-        return '眩鳥';
+        return '眩鸟';
       case 10:
-        return '浮空龍';
+        return '浮空龙';
       case 11:
-        return '大兇顎龍';
+        return '大痹贼龙';
       case 12:
-        return '骨槌龍';
+        return '骨槌龙';
       case 13:
-        return '風漂龍';
+        return '风漂龙';
       case 14:
-        return '慘爪龍';
+        return '惨爪龙';
       case 15:
-        return '火龍';
+        return '火龙';
       case 16:
-        return '角龍';
+        return '角龙';
       case 17:
         return '麒麟';
       case 18:
-        return '熔山龍';
+        return '熔山龙';
       case 19:
-        return '岩賊龍';
+        return '岩贼龙';
       case 20:
-        return '櫻火龍';
+        return '樱火龙';
       case 21:
-        return '爆鱗龍';
+        return '爆鳞龙';
       case 22:
-        return '恐爆龍';
+        return '恐暴龙';
       case 23:
-        return '熔岩龍';
+        return '熔岩龙';
       case 24:
-        return '爆錘龍';
+        return '爆锤龙';
       case 25:
-        return '蒼火龍';
+        return '苍火龙';
       case 26:
-        return '黑角龍';
+        return '黑角龙';
       case 27:
-        return '滅盡龍';
+        return '灭尽龙';
       case 28:
-        return '炎王龍';
+        return '炎王龙';
       case 29:
-        return '炎妃龍';
+        return '炎妃龙';
       case 30:
-        return '鋼龍';
+        return '钢龙';
       case 31:
-        return '屍套龍';
+        return '尸套龙';
       case 32:
-        return '絢輝龍';
+        return '绚辉龙';
       case 33:
-        return '冥燈龍';
+        return '冥灯龙';
       case 34:
-        return '冰魚龍';
+        return '冰鱼龙';
       case 35:
-        return '猛牛龍';
+        return '猛牛龙';
       case 36:
-        return '痺毒龍';
+        return '痹毒龙';
       case 37:
-        return '浮眠龍';
+        return '浮眠龙';
       case 38:
-        return '水妖鳥';
+        return '水妖鸟';
       case 39:
-        return '冰牙龍';
+        return '冰牙龙';
       case 40:
-        return '迅龍';
+        return '迅龙';
       case 41:
-        return '斬龍';
+        return '斩龙';
       case 42:
-        return '轟龍';
+        return '轰龙';
       case 43:
-        return '碎龍';
+        return '碎龙';
       case 44:
-        return '硫斬龍';
+        return '硫斩龙';
       case 45:
-        return '霜翼風飄龍';
+        return '霜翼风漂龙';
       case 46:
-        return '雷顎龍';
+        return '雷颚龙';
       case 47:
-        return '兇爪龍';
+        return '凶爪龙';
       case 48:
-        return '冰呪龍';
+        return '冰呪龙';
       case 49:
-        return '紅蓮爆鱗龍';
+        return '红莲爆鳞龙';
       case 50:
-        return '霧瘴屍套龍';
+        return '雾瘴尸套龙';
       case 51:
-        return '溟波龍';
+        return '溟波龙';
       case 52:
-        return '惶怒恐暴龍';
+        return '惶怒恐暴龙';
       case 53:
-        return '殲世滅盡龍';
+        return '歼世灭尽龙';
       case 54:
-        return '天地煌啼龍';
+        return '天地煌啼龙';
       case 55:
-        return '雷狼龍';
+        return '雷狼龙';
       case 56:
-        return '黑狼鳥';
+        return '黑狼鸟';
       case 57:
-        return '戰痕黑狼鳥';
+        return '战痕黑狼鸟';
       case 58:
-        return '黑轟龍';
+        return '黑轰龙';
       case 59:
-        return '金火龍';
+        return '金火龙';
       case 60:
-        return '銀火龍';
+        return '银火龙';
       case 61:
-        return '金獅子';
+        return '金狮子';
       case 62:
-        return '獄狼龍';
+        return '狱狼龙';
       case 63:
-        return '冥赤龍';
+        return '冥赤龙';
       case 64:
-        return '激昂金獅子';
+        return '激昂金狮子';
       case 65:
-        return '猛爆碎龍';
+        return '猛爆碎龙';
       case 66:
-        return '霜刃冰牙龍';
+        return '霜刃冰牙龙';
       case 67:
-        return '煌黑龍';
+        return '煌黑龙';
       case 68:
-        return '黑龍';
+        return '黑龙';
       case 69:
-        return '貝希摩斯';
+        return '贝希摩斯';
       case 70:
         return '鹿首精';
       case 71:
         return '古代鹿首精';
       default:
-        return `魔物 ${number}`;
+        return `怪物 ${number}`;
     }
-    return `魔物 ${number}`;
+    return `怪物 ${number}`;
   }

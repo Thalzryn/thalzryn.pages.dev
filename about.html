@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,18 +21,18 @@
   <main>
     <section class="bio">
       <h1><a href="about.html" target="_blank" rel="noopener">留言板</a></h1>
-      <p>歡迎留下你的想法！</p>
+      <p>欢迎留下你的想法！</p>
 
 <section class="comments-section">
-    <div class="comments-title">發表留言</div>
+    <div class="comments-title">发表留言</div>
     
     <div class="comments-container">
         <form id="comment-form" class="comment-form">
             <div class="form-group">
-                <input type="text" id="nickname" placeholder="暱稱" required maxlength="20">
+                <input type="text" id="nickname" placeholder="昵称" required maxlength="20">
             </div>
             <div class="form-group">
-                <textarea id="content" placeholder="撰寫你的留言..." required maxlength="500" rows="4"></textarea>
+                <textarea id="content" placeholder="撰写你的留言……" required maxlength="500" rows="4"></textarea>
             </div>
 
             <!-- Turnstile 深色模式驗證框 -->
@@ -40,14 +40,14 @@
                 <div class="cf-turnstile" data-sitekey="0x4AAAAAAEl7dZEyK-3daL0o" data-theme="dark"></div>
             </div>
 
-            <button type="submit" id="submit-btn" class="comment-submit-btn">傳送留言</button>
+            <button type="submit" id="submit-btn" class="comment-submit-btn">发送留言</button>
         </form>
 
         <hr class="comment-divider">
 
         <!-- 留言列表 -->
         <div id="comments-list">
-            <p class="comment-state-text">載入留言中...</p>
+            <p class="comment-state-text">载入留言中……</p>
         </div>
     </div>
 </section>
