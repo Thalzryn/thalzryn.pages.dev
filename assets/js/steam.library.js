@@ -1,6 +1,6 @@
     // 将你的 JSON 文件放在 ./data/steam.json。
     // 如果文件名或路径不同，只需要修改下面这一行。
-    const DATA_URL = "data/steam——games.json";
+    const DATA_URL = "data/steam_games.json";
     const PAGE_SIZE = 100;
 
     let games = [];
