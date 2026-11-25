@@ -9,562 +9,122 @@
   <link rel="icon" href="favicon-48x48.png" type="image/png" sizes="48x48">
   <link rel="icon" href="favicon-192x192.png" type="image/png" sizes="192x192">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #1a1a1a;
-      --panel: #202020;
-      --panel-hover: #252525;
-      --text: #cccccc;
-      --heading: #dddddd;
-      --muted: #666666;
-      --border: #333333;
-      --track: #333333;
-      --bar: #aaaaaa;
-      --focus: #999999;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      padding: 64px 24px 48px;
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        "PingFang SC", "Microsoft YaHei", sans-serif;
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .page {
-      width: min(1100px, 100%);
-      margin: 0 auto;
-    }
-
-    header { margin-bottom: 36px; }
-
-    .eyebrow {
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    h1 {
-      margin: 0;
-      color: var(--heading);
-      font-size: clamp(28px, 5vw, 38px);
-      font-weight: 600;
-      letter-spacing: -.04em;
-    }
-
-    .intro {
-      margin: 8px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin-bottom: 32px;
-    }
-
-    .stat {
-      min-width: 0;
-      padding: 18px 20px;
-      background: var(--panel);
-      border: 1px solid #292929;
-      border-radius: 8px;
-    }
-
-    .stat-label {
-      color: var(--muted);
-      font-size: 11px;
-      letter-spacing: .09em;
-      text-transform: uppercase;
-    }
-
-    .stat-value {
-      margin-top: 5px;
-      color: var(--heading);
-      font-size: clamp(21px, 3vw, 28px);
-      font-weight: 600;
-      font-variant-numeric: tabular-nums;
-      overflow-wrap: anywhere;
-    }
-
-    .toolbar {
-      display: grid;
-      grid-template-columns: minmax(220px, 1fr) 190px 170px;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    input, select, button {
-      min-height: 42px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      background: var(--panel);
-      color: var(--text);
-      font: inherit;
-    }
-
-    input, select { padding: 0 12px; width: 100%; }
-    input::placeholder { color: var(--muted); }
-    input:focus, select:focus, button:focus-visible, a:focus-visible {
-      outline: 2px solid var(--focus);
-      outline-offset: 2px;
-    }
-
-    .table-shell {
-      overflow-x: auto;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: #1d1d1d;
-    }
-
-    table {
-      width: 100%;
-      min-width: 760px;
-      border-collapse: collapse;
-      text-align: left;
-    }
-
-    th {
-      padding: 13px 16px;
-      color: var(--muted);
-      background: #202020;
-      border-bottom: 1px solid var(--border);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: .08em;
-      white-space: nowrap;
-    }
-
-    th button {
-      min-height: 0;
-      padding: 0;
-      border: 0;
-      border-radius: 0;
-      background: transparent;
-      color: inherit;
-      font: inherit;
-      letter-spacing: inherit;
-      cursor: pointer;
-    }
-
-    th button:hover { color: var(--heading); }
-
-    td {
-      padding: 14px 16px;
-      border-bottom: 1px solid #2b2b2b;
-      font-size: 13px;
-      vertical-align: middle;
-    }
-
-    tbody tr:last-child td { border-bottom: 0; }
-    tbody tr:hover { background: var(--panel-hover); }
-
-    .game-name {
-      color: var(--heading);
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .game-name:hover { text-decoration: underline; text-underline-offset: 3px; }
-
-    .appid {
-      display: block;
-      margin-top: 2px;
-      color: var(--muted);
-      font-size: 10px;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .numeric {
-      white-space: nowrap;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .achievement-cell { min-width: 160px; }
-
-    .achievement-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 7px;
-      white-space: nowrap;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .achievement-rate { color: var(--heading); }
-
-    .progress-track {
-      height: 3px;
-      overflow: hidden;
-      border-radius: 99px;
-      background: var(--track);
-    }
-
-    .progress-bar {
-      height: 100%;
-      border-radius: inherit;
-      background: var(--bar);
-    }
-
-    .empty, .status {
-      padding: 28px 16px;
-      color: var(--muted);
-      text-align: center;
-      font-size: 13px;
-    }
-
-    .table-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-top: 16px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .pagination {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .pagination button {
-      min-height: 34px;
-      padding: 0 12px;
-      cursor: pointer;
-      font-size: 12px;
-    }
-
-    .pagination button:disabled {
-      opacity: .35;
-      cursor: not-allowed;
-    }
-
-    #pageInfo {
-      min-width: 76px;
-      text-align: center;
-      font-variant-numeric: tabular-nums;
-    }
-
-    footer {
-      margin-top: 42px;
-      color: var(--muted);
-      font-size: 11px;
-      letter-spacing: .08em;
-      text-align: center;
-    }
-
-    @media (max-width: 680px) {
-      body { padding: 38px 16px 32px; }
-      .stats { grid-template-columns: 1fr 1fr; }
-      .stat:last-child { grid-column: 1 / -1; }
-      .toolbar { grid-template-columns: 1fr; }
-      .table-footer { align-items: flex-start; flex-direction: column; }
-      .pagination { width: 100%; justify-content: space-between; }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/steam-library.css">
 </head>
 <body>
-  <main class="page">
+  <main class="steam-page">
+  <nav>
+    <a href="index.html">← 星巡者</a>
+  </nav>
     <header>
-      <div class="eyebrow">Personal Game Archive</div>
-      <h1>Steam Library</h1>
-      <p class="intro">A record of games, playtime and achievements.</p>
+      <h1>Steam游戏统计</h1>
     </header>
 
-    <section class="stats" aria-label="Library statistics">
+    <section class="stats">
       <div class="stat">
-        <div class="stat-label">Total Games</div>
+        <div class="stat-label">游戏总数</div>
         <div class="stat-value" id="gameCount">—</div>
       </div>
+
       <div class="stat">
-        <div class="stat-label">Total Playtime</div>
+        <div class="stat-label">总游戏时长</div>
         <div class="stat-value" id="totalHours">—</div>
       </div>
+
       <div class="stat">
-        <div class="stat-label">Recent Playtime</div>
+        <div class="stat-label">近期游戏时长</div>
         <div class="stat-value" id="recentHours">—</div>
       </div>
     </section>
 
-    <section aria-label="Game list">
+    <!-- 搜索与筛选 -->
+    <section aria-label="游戏列表">
+
       <div class="toolbar">
-        <input id="search" type="search" placeholder="Search games..." autocomplete="off" aria-label="Search games">
-        <select id="filter" aria-label="Filter games">
-          <option value="all">All games</option>
-          <option value="completed">100% achievements</option>
-          <option value="incomplete">Incomplete achievements</option>
-          <option value="played">Played recently</option>
+        <input
+          id="search"
+          type="search"
+          placeholder="搜索游戏名称..."
+          autocomplete="off"
+          aria-label="搜索游戏"
+        >
+
+        <select id="filter" aria-label="筛选游戏">
+          <option value="all">全部游戏</option>
+          <option value="completed">已达成全成就</option>
+          <option value="incomplete">未完成成就</option>
+          <option value="played">近期游玩</option>
         </select>
-        <select id="sort" aria-label="Sort games">
-          <option value="hours-desc">Playtime: high to low</option>
-          <option value="hours-asc">Playtime: low to high</option>
-          <option value="recent-desc">Recent: high to low</option>
-          <option value="recent-asc">Recent: low to high</option>
-          <option value="achievement-desc">Achievement: high to low</option>
-          <option value="achievement-asc">Achievement: low to high</option>
-          <option value="name-asc">Name: A to Z</option>
-          <option value="name-desc">Name: Z to A</option>
+
+        <select id="sort" aria-label="排序方式">
+          <option value="hours-desc">游戏时长：从高到低</option>
+          <option value="hours-asc">游戏时长：从低到高</option>
+          <option value="recent-desc">近期时长：从高到低</option>
+          <option value="recent-asc">近期时长：从低到高</option>
+          <option value="achievement-desc">成就率：从高到低</option>
+          <option value="achievement-asc">成就率：从低到高</option>
+          <option value="name-asc">游戏名称：A-Z</option>
+          <option value="name-desc">游戏名称：Z-A</option>
         </select>
       </div>
 
+      <!-- 游戏表格 -->
       <div class="table-shell">
         <table>
           <thead>
             <tr>
-              <th style="width:44%">GAME</th>
-              <th><button type="button" data-sort="hours">PLAYTIME ↕</button></th>
-              <th><button type="button" data-sort="recent_hours">RECENT ↕</button></th>
-              <th>ACHIEVEMENTS</th>
+              <th style="width:44%">游戏名称</th>
+              <th>
+                <button type="button" data-sort="hours">
+                  游戏时长 ↕
+                </button>
+              </th>
+              <th>
+                <button type="button" data-sort="recent_hours">
+                  近期时长 ↕
+                </button>
+              </th>
+              <th>成就进度</th>
             </tr>
           </thead>
+
           <tbody id="gameTable">
-            <tr><td colspan="4" class="status">Loading library…</td></tr>
+            <tr>
+              <td colspan="4" class="status">
+                正在加载游戏数据...
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
 
+      <!-- 分页 -->
       <div class="table-footer">
-        <div id="resultCount" aria-live="polite">Loading…</div>
-        <nav class="pagination" aria-label="Pagination">
-          <button id="prevPage" type="button" disabled>Previous</button>
+        <div id="resultCount" aria-live="polite">
+          正在加载...
+        </div>
+
+        <nav class="pagination" aria-label="游戏列表分页">
+          <button id="prevPage" type="button" disabled>
+            上一页
+          </button>
+
           <span id="pageInfo">1 / 1</span>
-          <button id="nextPage" type="button" disabled>Next</button>
+
+          <button id="nextPage" type="button" disabled>
+            下一页
+          </button>
         </nav>
       </div>
+
     </section>
 
-    <footer>STEAM LIBRARY · PERSONAL ARCHIVE</footer>
+    <footer>
+      STEAM 游戏库 · 个人档案
+    </footer>
   </main>
 
-  <script>
-    // 将你的 JSON 文件放在 ./data/steam.json。
-    // 如果文件名或路径不同，只需要修改下面这一行。
-    const DATA_URL = "./data/steam.json";
-    const PAGE_SIZE = 100;
-
-    let games = [];
-    let currentPage = 1;
-
-    const $ = (id) => document.getElementById(id);
-
-    function number(value) {
-      const parsed = Number(value);
-      return Number.isFinite(parsed) ? parsed : 0;
-    }
-
-    function formatHours(value) {
-      return number(value).toLocaleString("en-US", {
-        minimumFractionDigits: 1,
-        maximumFractionDigits: 1
-      }) + "h";
-    }
-
-    function escapeHTML(value) {
-      return String(value ?? "").replace(/[&<>"']/g, (char) => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;"
-      })[char]);
-    }
-
-    function getFilteredGames() {
-      const keyword = $("search").value.trim().toLocaleLowerCase();
-      const filter = $("filter").value;
-      const sort = $("sort").value;
-
-      let result = games.filter((game) => {
-        const name = String(game.name ?? "").toLocaleLowerCase();
-        const matchesSearch = name.includes(keyword);
-
-        const unlocked = number(game.unlocked);
-        const total = number(game.total);
-        const percent = number(game.achievement_percent);
-
-        let matchesFilter = true;
-        if (filter === "completed") {
-          matchesFilter = total > 0 && (unlocked >= total || percent >= 99.999);
-        } else if (filter === "incomplete") {
-          matchesFilter = total > 0 && unlocked < total;
-        } else if (filter === "played") {
-          matchesFilter = number(game.recent_hours) > 0;
-        }
-
-        return matchesSearch && matchesFilter;
-      });
-
-      const sorters = {
-        "hours-desc": (a, b) => number(b.hours) - number(a.hours),
-        "hours-asc": (a, b) => number(a.hours) - number(b.hours),
-        "recent-desc": (a, b) => number(b.recent_hours) - number(a.recent_hours),
-        "recent-asc": (a, b) => number(a.recent_hours) - number(b.recent_hours),
-        "achievement-desc": (a, b) => number(b.achievement_percent) - number(a.achievement_percent),
-        "achievement-asc": (a, b) => number(a.achievement_percent) - number(b.achievement_percent),
-        "name-asc": (a, b) => String(a.name ?? "").localeCompare(String(b.name ?? "")),
-        "name-desc": (a, b) => String(b.name ?? "").localeCompare(String(a.name ?? ""))
-      };
-
-      result.sort(sorters[sort] || sorters["hours-desc"]);
-      return result;
-    }
-
-    function renderStats() {
-      const totalHours = games.reduce((sum, game) => sum + number(game.hours), 0);
-      const recentHours = games.reduce((sum, game) => sum + number(game.recent_hours), 0);
-
-      $("gameCount").textContent = games.length.toLocaleString("en-US");
-      $("totalHours").textContent = formatHours(totalHours);
-      $("recentHours").textContent = formatHours(recentHours);
-    }
-
-    function renderTable() {
-      const filtered = getFilteredGames();
-      const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
-
-      currentPage = Math.min(Math.max(1, currentPage), pageCount);
-
-      const start = (currentPage - 1) * PAGE_SIZE;
-      const pageGames = filtered.slice(start, start + PAGE_SIZE);
-
-      if (pageGames.length === 0) {
-        $("gameTable").innerHTML =
-          '<tr><td colspan="4" class="empty">No games found.</td></tr>';
-      } else {
-        $("gameTable").innerHTML = pageGames.map((game) => {
-          const name = escapeHTML(game.name || "Unknown game");
-          const appid = Math.max(0, Math.floor(number(game.appid)));
-          const hours = formatHours(game.hours);
-          const recent = formatHours(game.recent_hours);
-          const unlocked = Math.max(0, Math.floor(number(game.unlocked)));
-          const total = Math.max(0, Math.floor(number(game.total)));
-          const percent = Math.min(100, Math.max(0, number(game.achievement_percent)));
-          const storeUrl = appid > 0
-            ? `https://store.steampowered.com/app/${appid}/`
-            : null;
-
-          const gameLabel = storeUrl
-            ? `<a class="game-name" href="${storeUrl}" target="_blank" rel="noopener noreferrer">${name}</a>`
-            : `<span class="game-name">${name}</span>`;
-
-          return `
-            <tr>
-              <td>
-                ${gameLabel}
-                <span class="appid">${appid > 0 ? "APPID " + appid : "APPID N/A"}</span>
-              </td>
-              <td class="numeric">${hours}</td>
-              <td class="numeric">${recent}</td>
-              <td class="achievement-cell">
-                <div class="achievement-top">
-                  <span>${unlocked} / ${total}</span>
-                  <span class="achievement-rate">${percent.toFixed(1)}%</span>
-                </div>
-                <div class="progress-track" role="progressbar"
-                  aria-valuenow="${percent.toFixed(1)}" aria-valuemin="0" aria-valuemax="100"
-                  aria-label="${name} achievement completion">
-                  <div class="progress-bar" style="width:${percent}%"></div>
-                </div>
-              </td>
-            </tr>
-          `;
-        }).join("");
-      }
-
-      $("resultCount").textContent =
-        `Showing ${filtered.length ? start + 1 : 0}–${Math.min(start + PAGE_SIZE, filtered.length)} of ${filtered.length} games`;
-
-      $("pageInfo").textContent = `${currentPage} / ${pageCount}`;
-      $("prevPage").disabled = currentPage <= 1;
-      $("nextPage").disabled = currentPage >= pageCount;
-    }
-
-    function refresh() {
-      currentPage = 1;
-      renderTable();
-    }
-
-    async function loadLibrary() {
-      try {
-        const response = await fetch(DATA_URL, { cache: "no-store" });
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        if (!Array.isArray(data)) {
-          throw new Error("JSON 顶层必须是数组，例如 [{\"name\":\"...\"}]");
-        }
-
-        games = data.filter((item) => item && typeof item === "object");
-        renderStats();
-        renderTable();
-      } catch (error) {
-        console.error("Failed to load Steam library:", error);
-        $("gameTable").innerHTML = `
-          <tr><td colspan="4" class="empty">
-            无法读取游戏数据。请确认文件位于 <code>${escapeHTML(DATA_URL)}</code>，
-            且通过本地服务器或网站地址访问此页面。
-          </td></tr>
-        `;
-        $("resultCount").textContent = "Data loading failed";
-        $("gameCount").textContent = "—";
-        $("totalHours").textContent = "—";
-        $("recentHours").textContent = "—";
-      }
-    }
-
-    $("search").addEventListener("input", refresh);
-    $("filter").addEventListener("change", refresh);
-    $("sort").addEventListener("change", refresh);
-
-    $("prevPage").addEventListener("click", () => {
-      if (currentPage > 1) {
-        currentPage--;
-        renderTable();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-    });
-
-    $("nextPage").addEventListener("click", () => {
-      const pageCount = Math.max(1, Math.ceil(getFilteredGames().length / PAGE_SIZE));
-      if (currentPage < pageCount) {
-        currentPage++;
-        renderTable();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-    });
-
-    document.querySelectorAll("[data-sort]").forEach((button) => {
-      button.addEventListener("click", () => {
-        const field = button.dataset.sort;
-        const selectValue = $("sort").value;
-        const descending = selectValue.endsWith("-desc");
-        const nextDescending = field === "hours" || field === "recent_hours"
-          ? !descending
-          : true;
-
-        $("sort").value = field === "hours"
-          ? (nextDescending ? "hours-desc" : "hours-asc")
-          : (nextDescending ? "recent-desc" : "recent-asc");
-        refresh();
-      });
-    });
-
-    loadLibrary();
-  </script>
+<script src="assets/js/steam.library.js"></script>
 </body>
 </html>

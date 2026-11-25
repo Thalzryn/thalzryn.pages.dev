@@ -1,0 +1,272 @@
+/* ==========================================
+   7. Steam 游戏库页面
+   仅作用于 .steam-page，不影响主页
+   ========================================== */
+body:has(.steam-page) {
+  max-width: 1000px;
+  margin: 64px auto 48px;
+}
+
+.steam-page {
+  width: 100%;
+}
+
+/* 页面标题 */
+.steam-page header {
+  margin-bottom: 36px;
+}
+
+.steam-page .eyebrow {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  margin-bottom: 8px;
+}
+
+.steam-page h1 {
+  color: var(--accent);
+  font-size: clamp(28px, 5vw, 38px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+.steam-page .intro {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* 统计数据 */
+.steam-page .stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.steam-page .stat {
+  min-width: 0;
+  padding: 18px 20px;
+  background: var(--panel);
+  border: 1px solid #292929;
+  border-radius: 6px;
+}
+
+.steam-page .stat-label {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.09em;
+}
+
+.steam-page .stat-value {
+  margin-top: 5px;
+  color: var(--accent);
+  font-size: clamp(21px, 3vw, 28px);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+/* 搜索、筛选与排序 */
+.steam-page .toolbar {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) 190px 190px;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.steam-page input,
+.steam-page select,
+.steam-page button {
+  min-height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+}
+
+.steam-page input,
+.steam-page select {
+  width: 100%;
+  padding: 0 12px;
+}
+
+.steam-page input::placeholder {
+  color: var(--muted);
+}
+
+.steam-page input:focus,
+.steam-page select:focus,
+.steam-page button:focus-visible,
+.steam-page a:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* 游戏表格 */
+.steam-page .table-shell {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #1d1d1d;
+}
+
+.steam-page table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.steam-page th {
+  padding: 13px 16px;
+  color: var(--muted);
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.steam-page th button {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+
+.steam-page th button:hover {
+  color: var(--accent);
+}
+
+.steam-page td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #2b2b2b;
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+.steam-page tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.steam-page tbody tr:hover {
+  background: var(--panel-hover);
+}
+
+/* 游戏名称与 AppID */
+.steam-page .game-name {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.steam-page .game-name:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.steam-page .appid {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.steam-page .numeric {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 成就进度 */
+.steam-page .achievement-cell {
+  min-width: 160px;
+}
+
+.steam-page .achievement-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 7px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.steam-page .achievement-rate {
+  color: var(--accent);
+}
+
+.steam-page .progress-track {
+  height: 3px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: var(--track);
+}
+
+.steam-page .progress-bar {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--bar);
+}
+
+/* 空状态与加载状态 */
+.steam-page .empty,
+.steam-page .status {
+  padding: 28px 16px;
+  color: var(--muted);
+  text-align: center;
+  font-size: 13px;
+}
+
+/* 表格底部与分页 */
+.steam-page .table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.steam-page .pagination {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.steam-page .pagination button {
+  min-height: 34px;
+  padding: 0 12px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.steam-page .pagination button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.steam-page #pageInfo {
+  min-width: 76px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 页面底部 */
+.steam-page footer {
+  margin-top: 42px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
