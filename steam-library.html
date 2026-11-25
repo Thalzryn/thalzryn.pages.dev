@@ -31,11 +31,6 @@
         <div class="stat-label">总游戏时长</div>
         <div class="stat-value" id="totalHours">—</div>
       </div>
-
-      <div class="stat">
-        <div class="stat-label">近期游戏时长</div>
-        <div class="stat-value" id="recentHours">—</div>
-      </div>
     </section>
 
     <!-- 搜索与筛选 -->
@@ -54,14 +49,11 @@
           <option value="all">全部游戏</option>
           <option value="completed">已达成全成就</option>
           <option value="incomplete">未完成成就</option>
-          <option value="played">近期游玩</option>
         </select>
 
         <select id="sort" aria-label="排序方式">
           <option value="hours-desc">游戏时长：从高到低</option>
           <option value="hours-asc">游戏时长：从低到高</option>
-          <option value="recent-desc">近期时长：从高到低</option>
-          <option value="recent-asc">近期时长：从低到高</option>
           <option value="achievement-desc">成就率：从高到低</option>
           <option value="achievement-asc">成就率：从低到高</option>
           <option value="name-asc">游戏名称：A-Z</option>
@@ -78,11 +70,6 @@
               <th>
                 <button type="button" data-sort="hours">
                   游戏时长 ↕
-                </button>
-              </th>
-              <th>
-                <button type="button" data-sort="recent_hours">
-                  近期时长 ↕
                 </button>
               </th>
               <th>成就进度</th>
