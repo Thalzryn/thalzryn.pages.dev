@@ -1,17 +1,17 @@
 /* ==========================================
-   1. 全局變量與 Reset
+   1. 全局变量与 Reset
    ========================================== */
 :root {
-  --bg: #1a1c1e;       /* 深灰底色，護眼且沉靜 */
-  --text: #cbd5e1;     /* 柔和灰白正文 */
-  --muted: #64748b;    /* 描述與時間 */
-  --accent: #93c5fd;   /* 冷藍標題與連結 */
+  --bg: #1a1a1a;
+  --text: #cccccc;
+  --muted: #666666;
+  --accent: #dddddd;
 }
 
-* { 
-  margin: 0; 
-  padding: 0; 
-  box-sizing: border-box; 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -42,7 +42,7 @@ nav {
   font-weight: 500;
 }
 
-/* 區塊獨立分隔（大留白自然分區） */
+/* 區塊獨立分隔 */
 .section-block {
   margin-top: 64px;
 }
@@ -61,13 +61,13 @@ nav {
 .bio h1 {
   font-size: 1.8rem;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--text);
   letter-spacing: -0.02em;
   margin-bottom: 12px;
 }
 
 .bio h1 a.avatar-title {
-  color: var(--accent);
+  color: var(--text);
   text-decoration: none;
 }
 
@@ -112,8 +112,8 @@ nav {
 }
 
 .friend-links a:hover {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
+  color: var(--text);
+  border-bottom-color: var(--text);
 }
 
 /* ==========================================
@@ -138,7 +138,7 @@ nav {
 .categories h2 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--text);
   margin-bottom: 4px;
 }
 
