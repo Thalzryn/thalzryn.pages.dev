@@ -1,5 +1,5 @@
 /* ==========================================
-   1. 全局变量与 Reset
+   1.全局
    ========================================== */
 :root {
   --bg: #1a1a1a;
@@ -25,7 +25,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* 全局連結 */
 a {
   color: var(--accent);
   text-decoration: none;
@@ -36,13 +35,11 @@ a:hover {
   opacity: 0.6;
 }
 
-/* 頂部導航 */
 nav {
   margin-bottom: 60px;
   font-weight: 500;
 }
 
-/* 區塊獨立分隔 */
 .section-block {
   margin-top: 64px;
 }
@@ -56,7 +53,7 @@ nav {
 }
 
 /* ==========================================
-   2. 個人簡介區塊 (Bio)
+   2.个人简介
    ========================================== */
 .bio h1 {
   font-size: 1.8rem;
@@ -96,7 +93,7 @@ nav {
 }
 
 /* ==========================================
-   3. 友情鏈接 (Friends)
+   3.友链
    ========================================== */
 .friend-links {
   display: flex;
@@ -117,7 +114,7 @@ nav {
 }
 
 /* ==========================================
-   4. 分類選單 (Categories)
+   4.分类选单
    ========================================== */
 .categories {
   list-style: none;
@@ -145,262 +142,4 @@ nav {
 .categories p {
   font-size: 0.9rem;
   color: var(--muted);
-}
-
-
-/* ==========================================
-   5. 全站移动端适配
-   ========================================== */
-
-/* 平板与小尺寸设备 */
-@media (max-width: 768px) {
-
-  body {
-    margin: 56px auto;
-    padding: 0 20px;
-  }
-
-  nav {
-    margin-bottom: 44px;
-  }
-
-  .section-block {
-    margin-top: 52px;
-  }
-
-  .section-title {
-    margin-bottom: 20px;
-  }
-
-  .bio h1 {
-    font-size: 1.65rem;
-  }
-
-  .social-links {
-    flex-wrap: wrap;
-    gap: 12px 18px;
-  }
-
-  .friend-links {
-    gap: 12px 16px;
-  }
-
-  .categories li {
-    margin-bottom: 30px;
-  }
-
-  /* Steam 游戏库 */
-  body:has(.steam-page) {
-    margin: 42px auto 36px;
-    padding: 0 20px;
-  }
-
-  .steam-page header {
-    margin-bottom: 28px;
-  }
-
-  .steam-page .stats {
-    gap: 10px;
-    margin-bottom: 26px;
-  }
-
-  .steam-page .stat {
-    padding: 16px;
-  }
-
-  .steam-page .toolbar {
-    grid-template-columns: minmax(0, 1fr) 160px 160px;
-    gap: 8px;
-  }
-
-  .steam-page .table-footer {
-    gap: 12px;
-  }
-}
-
-/* 手机屏幕 */
-@media (max-width: 580px) {
-
-  body {
-    margin: 40px auto;
-    padding: 0 18px;
-    line-height: 1.75;
-  }
-
-  nav {
-    margin-bottom: 36px;
-    font-size: 0.92rem;
-  }
-
-  .section-block {
-    margin-top: 44px;
-  }
-
-  .section-title {
-    font-size: 0.8rem;
-    margin-bottom: 18px;
-  }
-
-  /* 个人简介 */
-  .bio h1 {
-    font-size: 1.55rem;
-    margin-bottom: 10px;
-  }
-
-  .bio p {
-    font-size: 0.92rem;
-  }
-
-  .social-links {
-    margin-top: 16px;
-    gap: 12px 16px;
-  }
-
-  .social-links a {
-    font-size: 0.85rem;
-  }
-
-  /* 友情链接 */
-  .friend-links {
-    gap: 12px 16px;
-  }
-
-  .friend-links a {
-    font-size: 0.88rem;
-  }
-
-  /* 分类菜单 */
-  .categories li {
-    margin-bottom: 26px;
-  }
-
-  .categories h2 {
-    font-size: 1.15rem;
-  }
-
-  .categories p {
-    font-size: 0.85rem;
-  }
-
-  /* Steam 游戏库 */
-  body:has(.steam-page) {
-    margin: 34px auto 30px;
-    padding: 0 16px;
-  }
-
-  .steam-page header {
-    margin-bottom: 26px;
-  }
-
-  .steam-page h1 {
-    font-size: 28px;
-  }
-
-  .steam-page .intro {
-    font-size: 12px;
-  }
-
-  .steam-page .stats {
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
-
-  .steam-page .stat {
-    padding: 14px;
-  }
-
-  .steam-page .stat:last-child {
-    grid-column: 1 / -1;
-  }
-
-  .steam-page .stat-label {
-    font-size: 10px;
-  }
-
-  .steam-page .stat-value {
-    font-size: 22px;
-  }
-
-  .steam-page .toolbar {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-
-  .steam-page input,
-  .steam-page select {
-    min-height: 40px;
-    font-size: 13px;
-  }
-
-  /* 表格横向滚动 */
-  .steam-page .table-shell {
-    border-radius: 5px;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .steam-page table {
-    min-width: 680px;
-  }
-
-  .steam-page th,
-  .steam-page td {
-    padding: 12px;
-  }
-
-  .steam-page .table-footer {
-    align-items: flex-start;
-    flex-direction: column;
-    font-size: 11px;
-  }
-
-  .steam-page .pagination {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .steam-page .pagination button {
-    min-height: 36px;
-    padding: 0 14px;
-  }
-
-  .steam-page footer {
-    margin-top: 32px;
-  }
-}
-
-/* 小屏手机 */
-@media (max-width: 360px) {
-
-  body {
-    padding: 0 14px;
-  }
-
-  .bio h1 {
-    font-size: 1.4rem;
-  }
-
-  .social-links {
-    gap: 10px 14px;
-  }
-
-  .categories li {
-    margin-bottom: 22px;
-  }
-
-  body:has(.steam-page) {
-    padding: 0 12px;
-  }
-
-  .steam-page .stat {
-    padding: 12px;
-  }
-
-  .steam-page .stat-value {
-    font-size: 19px;
-  }
-
-  .steam-page .pagination button {
-    padding: 0 10px;
-    font-size: 11px;
-  }
 }
