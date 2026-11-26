@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rust学习笔记 - 星巡者Thalzryn</title>
+  <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../../favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../../favicon-48x48.png" type="image/png" sizes="48x48">
+  <link rel="icon" href="../../favicon-192x192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <link rel="stylesheet" href="../../assets/css/article.css">
+  <link rel="stylesheet" href="../../assets/css/back-to-top .css">
+</head>
+<body>
+
+  <nav>
+    <a href="../../category-articles.html">← 文章</a>
+  </nav>
+    <button id="back-to-top" aria-label="返回顶部" title="返回顶部">
+        ↑
+    </button>
+
+  <main>
+<article class="lesson">
+  <header>
+    <h1>Rust 第二课：变量与可变性</h1>
+  </header>
+<section>
+    <h2>一、学习目标</h2>
+    <p>完成本课后，你应该能够：</p>
+    <ul>
+        <li>理解 Rust 变量的概念与作用。</li>
+        <li>使用 <code>let</code> 声明变量。</li>
+        <li>理解变量默认不可变的特性。</li>
+        <li>使用 <code>mut</code> 声明可变变量并修改变量的值。</li>
+        <li>理解 Rust 的静态类型系统与类型推断。</li>
+        <li>使用类型标注显式指定变量的数据类型。</li>
+        <li>理解 <code>Shadowing</code>（变量遮蔽）的原理与用法。</li>
+        <li>区分变量遮蔽与可变变量的区别。</li>
+        <li>理解代码块与变量作用域。</li>
+        <li>使用 <code>const</code> 声明常量。</li>
+        <li>掌握 Rust 变量、常量的基本命名规范。</li>
+    </ul>
+</section>
+<hr>
+  <section>
+    <h2>二、变量是什么？</h2>
+    <p>
+      变量（Variable）是程序用来存储数据的名称。程序运行时，可以通过变量保存数字、文字、布尔值等信息，并在后续代码中使用它们。
+    </p>
+    <p>例如，我们可以声明一个年龄变量：</p>
+    <pre><code>fn main() {
+    let age = 24;
+    println!("Age: {}", age);
+}</code></pre>
+    <p>输出：</p>
+    <pre><code>Age: 24</code></pre>
+
+    <ul>
+      <li><code>let</code>：声明变量。</li>
+      <li><code>age</code>：变量名。</li>
+      <li><code>24</code>：变量保存的值。</li>
+      <li><code>println!</code>：将变量的值输出到终端。</li>
+    </ul>
+
+    <p>Rust 中变量的声明通常使用 <code>let</code> 关键字。</p>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>三、Rust 的变量默认不可变</h2>
+    <p>
+      Rust 与许多其他语言不同，使用 <code>let</code> 声明的变量默认是不可变的（Immutable）。
+      变量一旦绑定了一个值，就不能直接重新赋予其他值。
+    </p>
+
+    <pre><code>fn main() {
+    let score = 100;
+    score = 200;
+
+    println!("{}", score);
+}</code></pre>
+
+    <p>上面的代码会报错，因为 <code>score</code> 默认不可变，不能重新赋值。</p>
+
+    <p>Rust 编译器会阻止这种操作。这种设计可以减少意外修改，让程序行为更加可预测。</p>
+
+    <h3>不可变变量的正确使用</h3>
+    <pre><code>fn main() {
+    let score = 100;
+    println!("{}", score);
+}</code></pre>
+
+    <p>输出：</p>
+    <pre><code>100</code></pre>
+
+    <p>
+      如果一个变量的值不需要发生改变，优先使用不可变变量，是 Rust 推荐的编程习惯。
+    </p>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>四、使用 mut 声明可变变量</h2>
+    <p>
+      如果希望变量的值能够被修改，需要在声明时使用 <code>mut</code> 关键字。
+      <code>mut</code> 是 mutable（可变）的缩写。
+    </p>
+
+    <pre><code>fn main() {
+    let mut score = 100;
+    score = 200;
+
+    println!("{}", score);
+}</code></pre>
+
+    <p>输出：</p>
+    <pre><code>200</code></pre>
+
+    <p>这里的 <code>score</code> 可以被修改，是因为声明时使用了 <code>mut</code>。</p>
+
+    <h3>多个修改操作</h3>
+    <pre><code>fn main() {
+    let mut score = 0;
+
+    score = 100;
+    score = 250;
+    score = 500;
+
+    println!("Final score: {}", score);
+}</code></pre>
+
+    <p>输出：</p>
+    <pre><code>Final score: 500</code></pre>
+
+    <p>
+      变量保存的是当前值。多次赋值后，变量会保存最后一次赋予的值，之前的值不再是该变量的当前值。
+    </p>
+
+    <h3>let 与 let mut 的区别</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>声明方式</th>
+          <th>是否可以重新赋值</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>let x = 10;</code></td>
+          <td>不可以</td>
+          <td>默认不可变</td>
+        </tr>
+        <tr>
+          <td><code>let mut x = 10;</code></td>
+          <td>可以</td>
+          <td>允许修改变量的值</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>五、类型推断（Type Inference）</h2>
+    <p>
+      Rust 是一种静态类型语言。每一个变量都有自己的数据类型，编译器需要在编译阶段确定变量的类型。
+    </p>
+    <p>
+      但大多数情况下，我们不需要手动写出类型。Rust 编译器能够根据变量的值自动推断出类型，这个过程叫做类型推断（Type Inference）。
+    </p>
+
+    <pre><code>fn main() {
+    let age = 24;
+    let temperature = 36.5;
+    let enabled = true;
+
+    println!("{}, {}, {}", age, temperature, enabled);
+}</code></pre>
+
+    <p>编译器会推断：</p>
+    <table>
+      <thead>
+        <tr>
+          <th>变量</th>
+          <th>值</th>
+          <th>推断类型</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>age</code></td>
+          <td><code>24</code></td>
+          <td><code>i32</code></td>
+        </tr>
+        <tr>
+          <td><code>temperature</code></td>
+          <td><code>36.5</code></td>
+          <td><code>f64</code></td>
+        </tr>
+        <tr>
+          <td><code>enabled</code></td>
+          <td><code>true</code></td>
+          <td><code>bool</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      Rust 的整数默认类型通常是 <code>i32</code>，浮点数默认类型通常是 <code>f64</code>。
+      布尔值则会被推断为 <code>bool</code>。
+    </p>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>六、显式类型标注（Type Annotation）</h2>
+    <p>
+      除了让编译器自动推断类型，我们也可以主动指定变量的类型。
+      这种写法叫做类型标注（Type Annotation）。
+    </p>
+
+    <pre><code>fn main() {
+    let age: i32 = 24;
+    let temperature: f64 = 36.5;
+    let enabled: bool = true;
+
+    println!("{}, {}, {}", age, temperature, enabled);
+}</code></pre>
+
+    <p>变量声明的基本格式：</p>
+    <pre><code>let 变量名: 类型 = 值;</code></pre>
+
+    <p>例如：</p>
+    <pre><code>let level: i32 = 10;
+let price: f64 = 19.99;
+let is_alive: bool = true;</code></pre>
+
+    <p>类型标注可以让代码更明确，也有助于理解程序中每个变量保存的数据。</p>
+
+    <h3>类型不匹配</h3>
+    <p>
+      Rust 不允许随意将不同类型的数据赋值给同一个变量。
+    </p>
+
+    <pre><code>fn main() {
+    let age: i32 = 24;
+    age = 25.5;
+}</code></pre>
+
+    <p>这段代码会报错，因为 <code>age</code> 的类型是 <code>i32</code>，而 <code>25.5</code> 是浮点数，无法直接赋给整数类型变量。</p>
+
+    <p>
+      即使使用 <code>mut</code>，也只能修改值，不能改变变量原本的类型。
+    </p>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>七、Shadowing（变量遮蔽）</h2>
+    <p>
+      Shadowing 是 Rust 的一个重要特性。我们可以使用新的 <code>let</code> 声明，再次创建一个与之前同名的变量，遮蔽旧变量。
+    </p>
+
+    <pre><code>fn main() {
+    let x = 10;
+    let x = 20;
+
+    println!("{}", x);
+}</code></pre>
+
+    <p>输出：</p>
+    <pre><code>20</code></pre>
+
+    <p>
+      第二次声明 <code>x</code> 并不是修改第一次声明的变量，而是创建了一个新的变量。新的变量遮蔽了旧变量，因此后续使用 <code>x</code> 时会访问新变量。
+    </p>
+
+    <h3>利用 Shadowing 进行计算</h3>
+    <pre><code>fn main() {
+    let x = 5;
+    let x = x + 1;
+    let x = x * 2;
+
+    println!("x = {}", x);
+}</code></pre>
+
+    <p>输出：</p>
+    <pre><code>x = 12</code></pre>
+
+    <p>计算过程：</p>
+    <ol>
+      <li>第一次声明：<code>x = 5</code></li>
+      <li>第二次声明：读取旧的 <code>x</code>，计算 <code>5 + 1 = 6</code>，创建新 <code>x</code></li>
+      <li>第三次声明：读取当前的 <code>x</code>，计算 <code>6 × 2 = 12</code>，再次创建新 <code>x</code></li>
+    </ol>
+
+    <p>
+      这里能够读取旧变量，是因为新变量的初始化表达式会先计算，计算时仍然可以访问被遮蔽的旧绑定。
+    </p>
+
+    <h3>Shadowing 可以改变类型</h3>
+    <p>
+      普通的变量重新赋值不能改变类型，但是 Shadowing 可以重新声明同名变量，因此允许改变类型。
+    </p>
+
+    <pre><code>fn main() {
+    let data = 100;
+    println!("{}", data);
+
+    let data = "100";
+    println!("{}", data);
+
+    let data = true;
+    println!("{}", data);
+}</code></pre>
+
+    <p>输出：</p>
+    <pre><code>100
+100
+true</code></pre>
+
+    <p>这里的 <code>data</code> 依次经历了不同类型：</p>
+    <ul>
+      <li>整数：<code>i32</code></li>
+      <li>字符串切片：<code>&amp;str</code></li>
+      <li>布尔值：<code>bool</code></li>
+    </ul>
+
+    <p>
+      每次新的 <code>let data</code> 都创建了一个新的变量绑定，旧变量被遮蔽。这并不代表 Rust 允许一个变量随意改变类型，而是创建了新的变量。
+    </p>
+
+    <h3>Shadowing 与 mut 的区别</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>特性</th>
+          <th><code>mut</code></th>
+          <th>Shadowing</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>修改值</td>
+          <td>可以</td>
+          <td>可以通过新声明实现</td>
+        </tr>
+        <tr>
+          <td>改变类型</td>
+          <td>不可以</td>
+          <td>可以</td>
+        </tr>
+        <tr>
+          <td>是否重新声明</td>
+          <td>否</td>
+          <td>是</td>
+        </tr>
+        <tr>
+          <td>关键字</td>
+          <td><code>let mut</code></td>
+          <td>再次使用 <code>let</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>八、作用域（Scope）</h2>
+    <p>
+      作用域是变量可以被访问的范围。在 Rust 中，使用大括号 <code>{}</code> 可以创建一个代码块（Block），代码块内部声明的变量通常只能在该代码块内部使用。
+    </p>
+
+    <pre><code>fn main() {
+    let outside = 100;
+
+    {
+        let inside = 200;
+        println!("{}", outside);
+        println!("{}", inside);
+    }
+
+    println!("{}", outside);
+}</code></pre>
+
+    <p>输出：</p>
+    <pre><code>100
+200
+100</code></pre>
+
+    <p>
+      内部代码块可以访问外部声明的变量，但是外部代码块不能访问内部声明的变量。
+    </p>
+
+    <h3>内部变量不能在外部使用</h3>
+    <pre><code>fn main() {
+    {
+        let number = 100;
+    }
+
+    println!("{}", number);
+}</code></pre>
+
+    <p>这段代码会报错，因为 <code>number</code> 在内部代码块结束后就不再处于可访问的作用域中。</p>
+
+    <p>作用域可以帮助组织代码、限制变量的使用范围，并减少变量之间的意外干扰。</p>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>九、常量（Constants）</h2>
+    <p>
+      常量是程序中不会发生变化的值。Rust 使用 <code>const</code> 声明常量。
+    </p>
+
+    <pre><code>const MAX_HP: i32 = 100;
+const MAX_LEVEL: u32 = 99;
+const PI: f64 = 3.1415926;
+
+fn main() {
+    println!("{}, {}, {}", MAX_HP, MAX_LEVEL, PI);
+}</code></pre>
+
+    <p>输出：</p>
+    <pre><code>100, 99, 3.1415926</code></pre>
+
+    <h3>常量的特点</h3>
+    <ul>
+      <li>使用 <code>const</code> 声明。</li>
+      <li>必须明确指定类型。</li>
+      <li>必须在声明时赋予值。</li>
+      <li>不能使用 <code>mut</code>。</li>
+      <li>值必须是编译期能够确定的常量表达式。</li>
+      <li>常量可以声明在函数外部，也可以声明在允许的作用域中。</li>
+      <li>常量命名通常使用全大写字母和下划线。</li>
+    </ul>
+
+    <h3>常量与变量的区别</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>对比</th>
+          <th>变量</th>
+          <th>常量</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>声明关键字</td>
+          <td><code>let</code></td>
+          <td><code>const</code></td>
+        </tr>
+        <tr>
+          <td>默认可变性</td>
+          <td>默认不可变</td>
+          <td>始终不可变</td>
+        </tr>
+        <tr>
+          <td>允许 <code>mut</code></td>
+          <td>允许</td>
+          <td>不允许</td>
+        </tr>
+        <tr>
+          <td>类型标注</td>
+          <td>可以推断</td>
+          <td>必须标注</td>
+        </tr>
+        <tr>
+          <td>声明时赋值</td>
+          <td>需要</td>
+          <td>需要</td>
+        </tr>
+        <tr>
+          <td>运行时修改</td>
+          <td>使用 <code>mut</code> 后可以</td>
+          <td>不可以</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>常量命名规范</h3>
+    <pre><code>const MAX_HP: i32 = 100;
+const MAX_LEVEL: u32 = 99;
+const PI: f64 = 3.1415926;
+const DEFAULT_SPEED: f64 = 10.0;</code></pre>
+
+    <p>推荐使用 <code>SCREAMING_SNAKE_CASE</code>（全大写下划线命名法）。</p>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>十、变量命名规范</h2>
+    <p>
+      Rust 使用不同的命名风格来区分变量、常量、函数等内容。
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>类型</th>
+          <th>推荐命名风格</th>
+          <th>示例</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>变量</td>
+          <td>snake_case</td>
+          <td><code>user_name</code></td>
+        </tr>
+        <tr>
+          <td>函数</td>
+          <td>snake_case</td>
+          <td><code>calculate_score</code></td>
+        </tr>
+        <tr>
+          <td>常量</td>
+          <td>SCREAMING_SNAKE_CASE</td>
+          <td><code>MAX_VALUE</code></td>
+        </tr>
+        <tr>
+          <td>类型、结构体</td>
+          <td>PascalCase</td>
+          <td><code>PlayerData</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>正确示例</h3>
+    <pre><code>let user_name = "Rust";
+let player_score = 100;
+let is_alive = true;
+
+const MAX_SCORE: i32 = 1000;</code></pre>
+
+    <h3>不推荐示例</h3>
+    <pre><code>let UserName = "Rust";
+let playerScore = 100;
+let isAlive = true;
+
+const maxScore: i32 = 1000;</code></pre>
+
+    <p>
+      不规范的命名通常不会导致程序运行失败，但可能产生编译器警告。统一的命名风格能让代码更容易阅读，也符合 Rust 社区习惯。
+    </p>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>十一、常见错误与编译器提示</h2>
+
+    <h3>1. 不可变变量重新赋值</h3>
+    <pre><code>let x = 10;
+x = 20;</code></pre>
+    <p>错误原因：变量默认不可变，不能重新赋值。</p>
+    <p>解决方法：</p>
+    <pre><code>let mut x = 10;
+x = 20;</code></pre>
+
+    <h3>2. 类型不匹配</h3>
+    <pre><code>let mut x = 10;
+x = 3.14;</code></pre>
+    <p>错误原因：<code>x</code> 是整数类型，不能直接赋值为浮点数。</p>
+
+    <h3>3. 变量未使用</h3>
+    <pre><code>let x = 100;</code></pre>
+    <p>
+      如果变量声明后从未被使用，编译器通常会发出未使用变量警告（Warning）。
+    </p>
+    <p>如果暂时不使用变量，可以在变量名前加下划线：</p>
+    <pre><code>let _x = 100;</code></pre>
+
+    <h3>4. 常量命名不规范</h3>
+    <pre><code>const MaxHp: i32 = 100;</code></pre>
+    <p>可能出现常量命名规范警告。建议改为：</p>
+    <pre><code>const MAX_HP: i32 = 100;</code></pre>
+
+    <h3>Warning 与 Error</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>提示类型</th>
+          <th>含义</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Warning（警告）</td>
+          <td>代码可能存在不规范或潜在问题，通常仍然可以编译。</td>
+        </tr>
+        <tr>
+          <td>Error（错误）</td>
+          <td>代码存在无法通过编译的问题，必须修复才能成功编译。</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Rust 的编译器不仅负责生成程序，也会帮助开发者发现错误、提示风险，并引导代码遵循更安全的习惯。
+    </p>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>十二、第二课核心知识总结</h2>
+
+    <h3>变量声明</h3>
+    <pre><code>let age = 24;</code></pre>
+
+    <h3>不可变变量</h3>
+    <pre><code>let score = 100;</code></pre>
+
+    <h3>可变变量</h3>
+    <pre><code>let mut score = 100;
+score = 200;</code></pre>
+
+    <h3>显式类型标注</h3>
+    <pre><code>let age: i32 = 24;
+let temperature: f64 = 36.5;
+let enabled: bool = true;</code></pre>
+
+    <h3>Shadowing</h3>
+    <pre><code>let x = 10;
+let x = x + 5;
+let x = x * 2;</code></pre>
+
+    <h3>作用域</h3>
+    <pre><code>{
+    let inside = 100;
+    println!("{}", inside);
+}</code></pre>
+
+    <h3>常量</h3>
+    <pre><code>const MAX_HP: i32 = 100;</code></pre>
+
+    <h3>命名规范</h3>
+    <pre><code>let user_name = "Rust";
+const MAX_LEVEL: u32 = 99;</code></pre>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>十三、课后练习</h2>
+    <p>以下练习用于巩固第二课的知识点。建议自己编写代码并运行，尽量不要直接查看答案。</p>
+
+    <h3>练习 1：个人信息</h3>
+    <p>声明以下变量并使用 <code>println!</code> 输出它们：</p>
+    <ul>
+      <li><code>username</code>：字符串，值为 <code>"thalzryn"</code></li>
+      <li><code>age</code>：整数，值为 <code>24</code></li>
+      <li><code>system</code>：字符串，值为 <code>"Arch Linux"</code></li>
+      <li><code>is_learning</code>：布尔值，值为 <code>true</code></li>
+    </ul>
+    <p>要求：使用占位符输出全部变量。</p>
+
+    <h3>练习 2：可变变量</h3>
+    <p>创建一个名为 <code>score</code> 的可变变量：</p>
+    <ol>
+      <li>初始值为 0。</li>
+      <li>将它修改为 100。</li>
+      <li>再修改为 250。</li>
+      <li>输出最终值。</li>
+    </ol>
+    <p>要求：使用 <code>mut</code>，不要重复声明同名变量。</p>
+
+    <h3>练习 3：显式类型</h3>
+    <p>创建三个变量，并为它们指定类型：</p>
+    <ul>
+      <li><code>temperature</code>：<code>f64</code>，值为 36.5。</li>
+      <li><code>level</code>：<code>i32</code>，值为 10。</li>
+      <li><code>enabled</code>：<code>bool</code>，值为 true。</li>
+    </ul>
+    <p>要求：全部使用类型标注，并输出它们。</p>
+
+    <h3>练习 4：Shadowing 计算</h3>
+    <p>阅读下面的代码，不运行，先思考最终输出是什么：</p>
+    <pre><code>fn main() {
+    let x = 10;
+    let x = x + 5;
+    let x = x * 2;
+
+    println!("x = {}", x);
+}</code></pre>
+    <p>回答以下问题：</p>
+    <ol>
+      <li>最终输出是什么？</li>
+      <li>为什么这里不需要 <code>mut</code>？</li>
+      <li>这里的每一个 <code>let x</code> 是同一个变量吗？</li>
+      <li>如果第二行改为 <code>x = x + 5;</code>，会发生什么？</li>
+    </ol>
+
+    <h3>练习 5：改变变量类型</h3>
+    <p>使用 Shadowing 创建一个名为 <code>data</code> 的变量，依次经历以下值：</p>
+    <ol>
+      <li>整数 100。</li>
+      <li>字符串 <code>"100"</code>。</li>
+      <li>布尔值 <code>true</code>。</li>
+    </ol>
+    <p>每次重新声明后都打印变量。</p>
+    <p>要求：不要使用 <code>mut</code>。</p>
+
+    <h3>练习 6：常量</h3>
+    <p>声明以下三个常量，并在 <code>main()</code> 中输出它们：</p>
+    <ul>
+      <li><code>MAX_HP</code>：类型 <code>i32</code>，值为 100。</li>
+      <li><code>MAX_LEVEL</code>：类型 <code>u32</code>，值为 99。</li>
+      <li><code>PI</code>：类型 <code>f64</code>，值为 3.14159。</li>
+    </ul>
+    <p>要求：常量声明在 <code>main()</code> 外部，并遵循常量命名规范。</p>
+  </section>
+
+  <hr>
+
+<section>
+    <h2>十四、课程总结</h2>
+    <p>本课学习了 Rust 的变量声明、可变性、类型推断、变量遮蔽、作用域与常量。</p>
+
+    <ul>
+        <li><code>let</code>：声明变量，默认不可变。</li>
+        <li><code>let mut</code>：声明可变变量，允许修改值。</li>
+        <li><code>mut</code>：允许变量重新赋值，但不能改变变量类型。</li>
+        <li><code>Type Inference</code>：类型推断，编译器根据值自动确定变量类型。</li>
+        <li><code>: i32</code>、<code>: f64</code>、<code>: bool</code>：显式类型标注。</li>
+        <li><code>Shadowing</code>：使用新的 <code>let</code> 声明遮蔽已有的同名变量。</li>
+        <li><code>let x = x + 1;</code>：读取旧变量的值，计算后创建新的同名变量。</li>
+        <li><code>Shadowing</code>：可以重新声明同名变量，甚至改变其数据类型。</li>
+        <li><code>{}</code>：代码块，创建独立作用域。</li>
+        <li><code>Scope</code>：变量的有效范围，内部作用域可以访问外部变量，外部不能访问内部变量。</li>
+        <li><code>const</code>：声明常量，必须指定类型，值不可修改。</li>
+        <li><code>SCREAMING_SNAKE_CASE</code>：常量命名规范，例如 <code>MAX_HP</code>、<code>MAX_LEVEL</code>。</li>
+        <li><code>snake_case</code>：变量与函数命名规范，例如 <code>user_name</code>、<code>player_score</code>。</li>
+        <li><code>Warning</code>：编译器警告，提示潜在问题或不规范写法。</li>
+        <li><code>Error</code>：编译错误，代码存在无法通过编译的问题。</li>
+    </ul>
+</section>
+<script src="../../assets/js/back-to-top.js" defer></script>
+</article>
+  </main>
+
+</body>
+</html>
