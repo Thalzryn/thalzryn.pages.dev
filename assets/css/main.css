@@ -143,3 +143,39 @@ nav {
   font-size: 0.9rem;
   color: var(--muted);
 }
+
+/* =========================
+   5.全站通用图片样式
+   ========================= */
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 1.2rem auto;
+
+    border: 1px solid var(--border, #333333);
+    border-radius: 4px;
+
+    background: var(--panel, #202020);
+}
+
+/* 图片说明 */
+figcaption {
+    margin-top: -0.6rem;
+    margin-bottom: 1.2rem;
+
+    color: var(--muted, #777777);
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+/* 图片链接 */
+a:has(img) {
+    text-decoration: none;
+}
+
+/* 图片悬停 */
+img:hover {
+    border-color: #555555;
+}
