@@ -12,7 +12,7 @@
 ## 技术
 
 - HTML + CSS + JavaScript
-- Cloudflare Workers + Pages + D1 SQLite
+- Cloudflare Workers + Pages + D1 SQLite + R2
 
 ## 其他
 
